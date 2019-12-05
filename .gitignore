@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+*.csproj
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /CarDealers.DataManager/CarDealers.DataManager.csproj
 /CarDealers.Models/CarDealers.Models.csproj
+healthchecksdb
