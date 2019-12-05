@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/CarDealers.DataManager/CarDealers.DataManager.csproj
+/CarDealers.Models/CarDealers.Models.csproj
