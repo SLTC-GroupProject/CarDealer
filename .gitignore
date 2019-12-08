@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+*.csproj
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -337,4 +337,7 @@ ASALocalRun/
 .localhistory/
 
 # BeatPulse healthcheck temp database
+healthchecksdb
+/CarDealers.DataManager/CarDealers.DataManager.csproj
+/CarDealers.Models/CarDealers.Models.csproj
 healthchecksdb
