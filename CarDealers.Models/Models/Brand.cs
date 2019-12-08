@@ -6,13 +6,15 @@ using System.Text;
 
 namespace CarDealers.Models.Models
 {
-    public class User
+    public class Brand
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
 
+        [ForeignKey("CatId")]
+        public Category ParentCat { get; set; }
+        public int CatId { get; set; }
     }
 }

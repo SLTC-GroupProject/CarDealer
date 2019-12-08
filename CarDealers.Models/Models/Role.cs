@@ -6,13 +6,16 @@ using System.Text;
 
 namespace CarDealers.Models.Models
 {
-    public class User
+    public class Role
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
+        public string Description { get; set; }
 
+        [ForeignKey("UserId")]
+        public User ParentUser { get; set; }
+        public int UserId { get; set; }
     }
 }

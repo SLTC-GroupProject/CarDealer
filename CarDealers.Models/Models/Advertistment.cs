@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CarDealers.Models.Models
 {
     public class Advertistment
     {
-        public int AdID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
         public string AdTitle { get; set; }
         public string AdData { get; set; }
         public string AdPrice { get; set; }
@@ -23,8 +27,12 @@ namespace CarDealers.Models.Models
         public string VehiEdition { get; set; }
         public string LocLongitude{ get; set; }
         public string LocLatitude { get; set; }
-        public string AdUserName { get; set; }
-        public string AdUserEmail { get; set; }
-        public string AdUserMobileno { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string UserMobileno { get; set; }
+
+        [ForeignKey("UserId")]
+        public User ParentUser{ get; set; }
+        public int UserId { get; set; }
     }
 }

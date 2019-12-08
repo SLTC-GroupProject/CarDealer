@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarDealers.Models.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,16 @@ namespace CarDealers.DataManager.Context
             Database.EnsureCreated();
         }
 
-
+        public DbSet<Advertistment> Advertistments { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Login> Logins { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         //protected override void OnConfiguring(DbContextOptionsBuilder builder)
