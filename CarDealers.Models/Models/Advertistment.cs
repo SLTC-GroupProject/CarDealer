@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CarDealers.Models.Models
 {
     public class Advertistment
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string AdTitle { get; set; }
         public string AdData { get; set; }
@@ -26,6 +30,9 @@ namespace CarDealers.Models.Models
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string UserMobileno { get; set; }
-        public ICollection<User> UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User ParentUser{ get; set; }
+        public int UserId { get; set; }
     }
 }
