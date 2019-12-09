@@ -18,30 +18,47 @@ namespace CarDealers.DataManager.Repositories
             this._DbContext = DbContext;
         }
 
-
-        public void Create(User user)
+        public ICollection<User> GetUser()
         {
-            throw new NotImplementedException();
+            return _DbContext.Users.OrderBy(a => a.ID).ToList();
         }
 
-        public void Delete(int Id)
+        public bool UserExists(int UserId)
         {
-            throw new NotImplementedException();
+            return _DbContext.Users.Any(a => a.ID == UserId);
         }
 
-        public ICollection<User> GetAll()
+        public bool CreateUser(User user)
         {
-            throw new NotImplementedException();
+            _DbContext.Add(user);
+            return Save();
         }
 
-        public User GetById(int Id)
+        public User GetUser(int UserId)
         {
-            throw new NotImplementedException();
+            return _DbContext.Users.Where(a => a.ID == UserId).FirstOrDefault();
         }
 
-        public void Update(int Id, User user)
+        public bool DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _DbContext.Remove(user);
+            return Save();
         }
+
+        public bool UpdateUser(User user)
+        {
+            _DbContext.Update(user);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _DbContext.SaveChanges();
+            return saved >= 0 ? true : false;
+        }
+
+        
+
+        
     }
 }

@@ -12,9 +12,5 @@ namespace CarDealers.Models.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
-
-        [ForeignKey("AdId")]
-        public Advertistment ParentAd { get; set; }
-        public int AdId { get; set; }
     }
 }

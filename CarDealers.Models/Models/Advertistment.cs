@@ -25,6 +25,7 @@ namespace CarDealers.Models.Models
         public string VehiBodyType { get; set; }
         public string VehiTransmission { get; set; }
         public string VehiEdition { get; set; }
+        public bool VehNegotiable { get; set; }
         public string LocLongitude{ get; set; }
         public string LocLatitude { get; set; }
         public string UserName { get; set; }
@@ -34,5 +35,16 @@ namespace CarDealers.Models.Models
         [ForeignKey("UserId")]
         public User ParentUser{ get; set; }
         public int UserId { get; set; }
+
+        [ForeignKey("LocationId")]
+        public Location ParentLocation { get; set; }
+        public int LocationId { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public int ModelId { get; set; }
+
+        public int BrandId { get; set; }
+
     }
 }

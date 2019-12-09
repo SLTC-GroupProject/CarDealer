@@ -17,7 +17,6 @@ namespace CarDealers.DataManager.Context
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Location> Locations { get; set; }
-        public DbSet<Login> Logins { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Rating> Ratings { get; set; }

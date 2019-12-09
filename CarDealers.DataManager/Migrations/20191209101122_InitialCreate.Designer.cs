@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarDealers.DataManager.Migrations
 {
     [DbContext(typeof(CarDealersDbContext))]
-    [Migration("20191208110225_InitialUpdate")]
-    partial class InitialUpdate
+    [Migration("20191209101122_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,11 +43,23 @@ namespace CarDealers.DataManager.Migrations
                     b.Property<string>("AdTitle")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LocLatitude")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocLongitude")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("nvarchar(max)");
@@ -63,6 +75,9 @@ namespace CarDealers.DataManager.Migrations
 
                     b.Property<string>("VehEnginCapacity")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("VehNegotiable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("VehiBodyType")
                         .HasColumnType("nvarchar(max)");
@@ -89,6 +104,8 @@ namespace CarDealers.DataManager.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -122,15 +139,10 @@ namespace CarDealers.DataManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdId");
 
                     b.ToTable("Categories");
                 });
@@ -142,9 +154,6 @@ namespace CarDealers.DataManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
@@ -153,32 +162,7 @@ namespace CarDealers.DataManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdId");
-
                     b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("CarDealers.Models.Models.Login", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Logins");
                 });
 
             modelBuilder.Entity("CarDealers.Models.Models.Model", b =>
@@ -299,8 +283,14 @@ namespace CarDealers.DataManager.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -311,6 +301,12 @@ namespace CarDealers.DataManager.Migrations
 
             modelBuilder.Entity("CarDealers.Models.Models.Advertistment", b =>
                 {
+                    b.HasOne("CarDealers.Models.Models.Location", "ParentLocation")
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CarDealers.Models.Models.User", "ParentUser")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -323,33 +319,6 @@ namespace CarDealers.DataManager.Migrations
                     b.HasOne("CarDealers.Models.Models.Category", "ParentCat")
                         .WithMany()
                         .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CarDealers.Models.Models.Category", b =>
-                {
-                    b.HasOne("CarDealers.Models.Models.Advertistment", "ParentAd")
-                        .WithMany()
-                        .HasForeignKey("AdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CarDealers.Models.Models.Location", b =>
-                {
-                    b.HasOne("CarDealers.Models.Models.Advertistment", "ParentAd")
-                        .WithMany()
-                        .HasForeignKey("AdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CarDealers.Models.Models.Login", b =>
-                {
-                    b.HasOne("CarDealers.Models.Models.User", "ParentUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

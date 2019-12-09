@@ -8,10 +8,12 @@ namespace CarDealers.DataManager.Interfaces
 {
     public interface IUserRepository
     {
-        ICollection<User> GetAll();
-        User GetById(int Id);
-        void Create(User user);
-        void Update(int Id, User user);
-        void Delete(int Id);
+        ICollection<User> GetUser();
+        User GetUser(int UserId);
+        bool UserExists(int UserId);
+        bool CreateUser(User user);
+        bool UpdateUser(User user);
+        bool DeleteUser(User user);
+        bool Save();
     }
 }

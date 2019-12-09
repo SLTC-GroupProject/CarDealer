@@ -14,8 +14,5 @@ namespace CarDealers.Models.Models
         public string Name { get; set; }
         public string Image { get; set; }
 
-        [ForeignKey("AdId")]
-        public Advertistment ParentAd { get; set; }
-        public int AdId { get; set; }
     }
 }
