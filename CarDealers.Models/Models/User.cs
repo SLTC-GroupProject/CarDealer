@@ -14,5 +14,9 @@ namespace CarDealers.Models.Models
         public string Name { get; set; }
         public string Email { get; set; }
 
+        [ForeignKey("RoleId")]
+        public Role ParentRole { get; set; }
+        public int RoleId { get; set; }
+
     }
 }
